@@ -56,6 +56,18 @@ export class EditorPageComponent implements OnInit {
     }
   }
 
+  makeNormal() {
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.fontSize = "14px"
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
+  }
+
   makeBold() {
     if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
       let range = window.getSelection().getRangeAt(0);
@@ -105,33 +117,15 @@ export class EditorPageComponent implements OnInit {
   }
 
   alignLeft() {
-    let range = window.getSelection().getRangeAt(0);
-    const oldConent = document.createTextNode(range.toString());
-    const newElement = document.createElement('span');
-    newElement.style.textAlign = "left"
-    newElement.appendChild(oldConent);
-    range.deleteContents();
-    range.insertNode(newElement);
+    document.execCommand("justifyLeft" , true);
   }
 
   alignCenter() {
-    let range = window.getSelection().getRangeAt(0);
-    const oldConent = document.createTextNode(range.toString());
-    const newElement = document.createElement('span');
-    newElement.style.textAlign = "center"
-    newElement.appendChild(oldConent);
-    range.deleteContents();
-    range.insertNode(newElement);
+    document.execCommand("justifyCenter" , true);
   }
 
   alignRight() {
-    let range = window.getSelection().getRangeAt(0);
-    const oldConent = document.createTextNode(range.toString());
-    const newElement = document.createElement('span');
-    newElement.style.textAlign = "right"
-    newElement.appendChild(oldConent);
-    range.deleteContents();
-    range.insertNode(newElement);
+    document.execCommand("justifyRight" , true);
   }
 
   triggerFontColorPicker() {
