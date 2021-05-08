@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DatastoreService } from '../../../services/datastore.service';
 import {MatDialog} from '@angular/material';
-import { NewPagePopupComponent } from '../new-page-popup/new-page-popup.component';
 import { FolderListComponent } from '../folder-list/folder-list.component';
 import { FolderService } from 'src/services/folder-service.service';
 import { PageService } from 'src/services/page-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-bar',
@@ -14,11 +14,16 @@ import { PageService } from 'src/services/page-service.service';
 export class MenuBarComponent implements OnInit 
 {
   folderComp: FolderListComponent;
-  constructor(private datastoreService : DatastoreService,public dialog : MatDialog , private folderService : FolderService , private pageService : PageService) 
+  constructor(private router : Router, private route : ActivatedRoute,private datastoreService : DatastoreService,public dialog : MatDialog , private folderService : FolderService , private pageService : PageService) 
   { }
 
   ngOnInit() 
   {}
+
+  homeClick(): void
+  {
+    //this.router.navigate(["/admin-panel/editor"])
+  }
 
   newFolderClick(): void
   {

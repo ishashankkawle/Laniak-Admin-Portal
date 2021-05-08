@@ -25,7 +25,7 @@ export class LoginPageComponent implements OnInit {
 
     if(this.coreService.authenticateLogin(this.username , this.password))
     {
-      console.log("Call AUTHENTICATION")
+      console.log("AUTHENTICATION DONE")
       this.dataService.IsUserAuthenticated = true;
       this.router.navigate(["/admin-panel"],{relativeTo:this.route})
     }

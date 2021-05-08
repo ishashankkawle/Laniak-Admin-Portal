@@ -49,6 +49,15 @@ export class FolderService extends CoreService {
   {
     let temp = []
     let removedFolder = ""
+
+    console.log("FOLDER List  " + currentFolder);
+    if(this.datastoreService.FolderList.length == 1)
+    {
+      console.log("Last Folder popped")
+      removedFolder = this.datastoreService.FolderList.pop()
+      return;
+    }
+
     while(removedFolder != currentFolder)
     {
       removedFolder = this.datastoreService.FolderList.pop()
@@ -58,6 +67,7 @@ export class FolderService extends CoreService {
         temp.push(removedFolder)
       }
     }
+    
     if(temp.length != 0)
     {
       for(let i = 0; i<temp.length; i++)

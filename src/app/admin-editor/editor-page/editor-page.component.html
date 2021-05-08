@@ -1,43 +1,5 @@
-<!-- <div class="row EditorPanal">
+<!-- <div class="EditorPanal bg-white" #editor1>
 
-  <div class="btn-group">
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="makeBold()"><span class="material-icons">format_bold</span></button>
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="makeItalic()"><span class="material-icons">format_italicapan></button>
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="makeUnderLine()"><span class="material-icons">format_underlined</span></button>
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="makeStrikeThrough()"><span class="material-icons">format_strikethrough</span></button>
-
-    <button type="button" class="btn btn-sm btn-outline-dark Comp-sec " (click)="alignLeft()"><span class="material-icons">format_align_left</span></button>
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="alignCenter()"><span class="material-icons">format_align_center</span></button>
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="alignRight()"><span class="material-icons">format_align_right</span></button>
-    <button type="button" class="btn btn-sm btn-outline-dark Comp-sec " (click)="copy()"><span class="material-icons">content_copy</span></button>
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="cut()"><span class="material-icons">content_cut</span></button>
-
-    <input type="color" class="btn btn-sm btn-outline-dark Comp-sec" [(ngModel)]="fontColor" (change)="setFontColor()" style="min-height: 34px">
-    <input type="color" class="btn btn-sm btn-outline-dark" [(ngModel)]="highlightColor" (change)="setHighLightColor()" style="min-height: 34px">
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="subScript()"><span class="material-icons">vertical_align_bottom</span></button>
-    <button type="button" class="btn btn-sm btn-outline-dark" (click)="superScript()"><span class="material-icons">vertical_align_top</span></button>
-
-  </div>
-
-      <div class="col-sm-12 EditorPage z-depth-3">
-        <div class="col-sm-12 row">
-          <div class="col-sm-6">
-              <span class="material-icons tiny circle EditorIcon ">border_color</span> Type Your Text Here ...
-          </div>
-          <div class="right-align col-sm-6">
-            <button type="button" class="editor-action editor-action-save" (click)="saveData()">Save</button>
-            <button type="button" class="editor-action editor-action-reset" (click)="reloadData()">Reset</button>
-            <button type="button" class="editor-action editor-action-clear" (click)="clearData()">Clear</button>
-          </div>
-        </div>
-        <div id="notepad" contenteditable class="col-sm-12 Box"><br><br></div>
-      </div>
-  </div> -->
-
-
-  <div class="EditorPanal bg-white" #editor1>
-
-    <!-- Top Layer Buttons -->
     <div class="ComponentMenu">
       <button type="button" class="col Component " (click)="makeBold()"><svg class="Lan-Editor-Ico" version="1.1" id="Layer_1"
           xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -187,8 +149,72 @@
   
     </div>
   
-    <!-- Editor Section -->
     <div class="EditorPage">
       <div id="notepad" #contentEditor contenteditable class="Box"><span class="PlaceholderText">Type your text here</span></div>
     </div>
+  </div> -->
+
+
+  <div class="lan-editor-card">
+    <div class="d-flex table-responsive justify-content-between ps-4 pe-4 pt-2" style="padding-bottom: 12px !important;">
+      <table style="empty-cells:hide;">
+        <td (click)="makeHeader1()"><img class="lan-btn-img" src="assets/type-h1.png"></td>
+        <td (click)="makeHeader2()"><img class="lan-btn-img" src="assets/type-h2.png"></td>
+        <td (click)="makeBold()"><img class="lan-btn-img-sm" src="assets/004-bold.png"></td>
+        <td (click)="makeItalic()"><img class="lan-btn-img-sm" src="assets/031-italic.png"></td>
+        <td (click)="makeUnderLine()"><img class="lan-btn-img-sm" src="assets/057-underline.png"></td>
+        <td (click)="makeStrikeThrough()"><img class="lan-btn-img-sm" src="assets/053-strikethrough.png"></td>
+
+
+        <td>
+          <div class="lan-btn-img"></div>
+        </td>
+        <td (click)="alignLeft()"><img class="lan-btn-img" src="assets/left-align.png"></td>
+        <td (click)="alignCenter()"><img class="lan-btn-img" src="assets/center-align.png"></td>
+        <td (click)="alignRight()"><img class="lan-btn-img" src="assets/right-align.png"></td>
+        <td>
+          <div class="lan-btn-img"></div>
+        </td>
+        <td (click)="triggerFontColorPicker()"><input class="lan-btn-hidden" type="color" id="lan-font-col-picker" [(ngModel)]="fontColor" (ngModelChange)="setFontColor()"><img class="lan-btn-img" src="assets/040-paint bucket.png"></td>
+        <td (click)="triggerHighlightColorPicker()"><input class="lan-btn-hidden" type="color" id="lan-highlight-col-picker" [(ngModel)]="highlightColor" (ngModelChange)="setHighLightColor()"><img class="lan-btn-img" src="assets/030-highlighter.png"></td>
+        <td (click)="superScript()"><img class="lan-btn-img" src="assets/055-superscript.png"></td>
+        <td (click)="subScript()"><img class="lan-btn-img" src="assets/054-subscript.png"></td>
+        <td>
+          <div class="lan-btn-img"></div>
+        </td>
+        <td (click)="cut()"><img class="lan-btn-img" src="assets/013-cut.png"></td>
+        <td (click)="copy()"><img class="lan-btn-img" src="assets/011-copy.png"></td>
+        <td> 
+          <div id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"><img class="lan-btn-img" src="assets/more-options.png"></div>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item lan-editor-dropdown-text"><img class="lan-btn-img" src="assets/coding.png"> Format as Code</a>
+            <a class="dropdown-item lan-editor-dropdown-text"><img class="lan-btn-img" src="assets/exclamation.png"> Format as Note</a>
+          </div>
+        </td>
+      </table>
+
+      <div style="display: flex;">
+        <div class="align-self-center lan-btn-img" (click)="reloadData()"><span class="material-icons" style="color: #eca12a">restart_alt</span></div>
+        <div class="align-self-center lan-btn-img" (click)="saveData()"><span class="material-icons" style="color: #e145a4;">save</span></div>
+      </div>
+    </div>
+
+    <div style="border-bottom: 0.5px solid #ededed;"></div>
+
+    <div id="laniak-base-editing-field" class="laniak-editing-passage" contenteditable="true" (keyup)="countWords()">
+      Type something
+    </div>
+
+    <div style="border-bottom: 0.5px solid #ededed;"></div>
+
+    <div class="d-flex table-responsive justify-content-between ps-4 pt-3 pb-3 pe-4">
+      <div class="lan-supressed-text">
+        Powered by <img src="assets/logoDesign.png" width="15" height="15"> <b> LANIAK</b>
+      </div>
+
+      <div class="lan-supressed-text">
+        <span>{{this.wordCount}}</span> words
+      </div>
+    </div>
+
   </div>

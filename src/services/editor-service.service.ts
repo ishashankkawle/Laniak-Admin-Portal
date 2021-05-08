@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
+import { DatastoreService } from './datastore.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditorService {
 
-  constructor() 
+  constructor( private datastoreService : DatastoreService) 
   {
   }
 
   public loadTextOnEditor(text : string)
   {
-    document.getElementById('notepad').innerHTML = text
+    document.getElementById(this.datastoreService.notepadId).innerHTML = text
   }
 
   public getTextFromEditor()
   {
-    return document.getElementById('notepad').innerHTML;
+    return document.getElementById(this.datastoreService.notepadId).innerHTML;
   }
 }

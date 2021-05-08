@@ -11,13 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule, MatListModule, MatDialogModule, MatButtonModule, MatInputModule } from '@angular/material';
 import { AdminEditorComponent } from './admin-editor.component';
-import { AppRoutingModule } from '../app-routing.module';
+import { AdminEditorRoutingModue } from './admin-editor-routing.module';
 import { TitleBarComponent } from './title-bar/title-bar.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule,
+    AdminEditorRoutingModue,
     FormsModule,
     BrowserAnimationsModule,
     MatIconModule,

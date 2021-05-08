@@ -13,92 +13,219 @@ export class EditorPageComponent implements OnInit {
   notepad: any;
   fontColor = '#008800';
   highlightColor = '#ffffff';
-
-  constructor(private pageService : PageService, private datastoreService : DatastoreService ,private editorSerice : EditorService) { }
+  wordCount = 14
+  constructor(private pageService: PageService, private datastoreService: DatastoreService, private editorSerice: EditorService) { }
 
   ngOnInit() {
-    this.notepad = document.getElementById('notepad');
+    this.notepad = document.getElementById('laniak-base-editing-field');
+  }
+
+  countWords()
+  {
+    this.wordCount = this.notepad.innerText.length;
+  }
+
+  checkParent(parent, child) {
+    if (parent.contains(child)) {
+      return true;
+    }
+    return false;
+  }
+
+  makeHeader1() {
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.fontSize = "40px"
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
+  }
+
+  makeHeader2() {
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.fontSize = "20px"
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
   }
 
   makeBold() {
-    document.execCommand('bold', false);
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.fontWeight = 'bold'
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
   }
 
   makeItalic() {
-    document.execCommand('italic', false);
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.fontStyle = 'italic'
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
   }
 
   makeUnderLine() {
-    document.execCommand('underline', false);
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.textDecoration = "underline"
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
   }
 
   makeStrikeThrough() {
-    document.execCommand('strikeThrough', false);
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.textDecoration = "line-through"
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
   }
 
   alignLeft() {
-    document.execCommand('justifyLeft', false);
+    let range = window.getSelection().getRangeAt(0);
+    const oldConent = document.createTextNode(range.toString());
+    const newElement = document.createElement('span');
+    newElement.style.textAlign = "left"
+    newElement.appendChild(oldConent);
+    range.deleteContents();
+    range.insertNode(newElement);
   }
 
   alignCenter() {
-    document.execCommand('justifyCenter', false);
+    let range = window.getSelection().getRangeAt(0);
+    const oldConent = document.createTextNode(range.toString());
+    const newElement = document.createElement('span');
+    newElement.style.textAlign = "center"
+    newElement.appendChild(oldConent);
+    range.deleteContents();
+    range.insertNode(newElement);
   }
 
   alignRight() {
-    document.execCommand('justifyRight', false);
+    let range = window.getSelection().getRangeAt(0);
+    const oldConent = document.createTextNode(range.toString());
+    const newElement = document.createElement('span');
+    newElement.style.textAlign = "right"
+    newElement.appendChild(oldConent);
+    range.deleteContents();
+    range.insertNode(newElement);
   }
 
-  triggerFontColorPicker()
-  {
+  triggerFontColorPicker() {
     document.getElementById('lan-font-col-picker').click();
   }
 
-  triggerHighlightColorPicker()
-  {
+  triggerHighlightColorPicker() {
     document.getElementById('lan-highlight-col-picker').click();
   }
 
-  copy() {
-    document.execCommand('copy');
+  copy() 
+  {
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let anyNavigator: any
+      anyNavigator = window.navigator
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = range.toString();
+      anyNavigator.clipboard.writeText(String(oldConent));
+    }
   }
 
   cut() {
-    document.execCommand('cut');
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let anyNavigator: any
+      anyNavigator = window.navigator
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = range.toString();
+      anyNavigator.clipboard.writeText(String(oldConent));
+      const newElement = document.createElement('span');
+      range.deleteContents();
+      range.insertNode(newElement)
+    }
   }
 
   setFontColor() {
-    document.execCommand('foreColor', false , this.fontColor);
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.color = this.fontColor
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement)
+    }
   }
 
   setHighLightColor() {
-    document.execCommand('hiliteColor', false, this.highlightColor);
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('span');
+      newElement.style.backgroundColor = this.highlightColor
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement)
+    }
   }
 
   subScript() {
-    document.execCommand('subscript', false);
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('sub');
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
   }
 
   superScript() {
-    document.execCommand('superscript', false);
+    if (window.getSelection().anchorNode.parentElement.id == "laniak-base-editing-field" || this.checkParent(this.notepad, window.getSelection().anchorNode)) {
+      let range = window.getSelection().getRangeAt(0);
+      const oldConent = document.createTextNode(range.toString());
+      const newElement = document.createElement('sup');
+      newElement.appendChild(oldConent);
+      range.deleteContents();
+      range.insertNode(newElement);
+    }
   }
 
   increaseSize() {
     document.execCommand('increaseFontSize', false);
   }
 
-  saveData()
-  {
+  saveData() {
     let contents = this.editorSerice.getTextFromEditor()
-    this.pageService.updatePage(contents).subscribe(()=> console.log("updated"))
+    this.pageService.updatePage(contents).subscribe(() => console.log("updated"))
   }
 
-  reloadData()
-  {
-    this.pageService.loadRaw(this.datastoreService.CurrentPage).subscribe((data : string)=>this.notepad.innerText = data)
+  reloadData() {
+    this.pageService.loadRaw(this.datastoreService.CurrentPage).subscribe((data: string) => this.notepad.innerHTML = data)
   }
 
-  clearData()
-  {
+  clearData() {
     this.notepad.innerText = ""
   }
 }

@@ -13,7 +13,7 @@ export class DatastoreService
   displayPagePopup = false;
   displayNewFolderPopup = false;
   displayNewPagePopup = false;
-
+  notepadId = "laniak-base-editing-field"
   // Values must be locally added to following arrays for updating the lists
   FolderList: string[] = []
   PageList: string[] = []

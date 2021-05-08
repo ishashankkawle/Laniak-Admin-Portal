@@ -36,6 +36,7 @@ export class PageService extends CoreService {
   {
     let reqBody = this.getCUJsonBody();
     let link = this.url + "files/" + this.datastoreService.CurrentFolder + "%2F" + pageName + "?branch=master";
+    console.log("pageList : " + this.datastoreService.PageList)
     return this.http.post(link , reqBody , this.AdminHeaderOptions);
   }
 
@@ -76,25 +77,33 @@ export class PageService extends CoreService {
   {
     let temp = []
     let removedPage = ""
+
+    if(this.datastoreService.PageList.length == 1)
+    {
+      this.datastoreService.PageList.pop();
+      this.folderService.removeFolderFromFolderList(this.datastoreService.CurrentFolder);
+      return;
+    }
+
     while(removedPage != pageName)
     {
       removedPage = this.datastoreService.PageList.pop()
       if(removedPage != pageName)
       {
-        console.log(removedPage)
         temp.push(removedPage)
       }
     }
-    if(temp.length != 0)
+
+    if(temp.length == 0 && this.datastoreService.PageList.length == 0)
+    {
+      this.folderService.removeFolderFromFolderList(this.datastoreService.CurrentFolder)
+    }
+    else
     {
       for(let i = 0; i<temp.length; i++)
       {
         this.datastoreService.PageList.push(temp.pop())
       } 
-    }
-    else
-    {
-      this.folderService.removeFolderFromFolderList(this.datastoreService.CurrentFolder)
     }
   }
 }
